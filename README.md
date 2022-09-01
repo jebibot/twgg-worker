@@ -6,11 +6,11 @@ The API Backend for twitchgg.tv services.
 
 ## 🔋 Getting Started
 
-This project is generated from `worker-typescript-template`. [Wrangler](https://developers.cloudflare.com/workers/cli-wrangler/install-update) 1.17 or newer is required. If you are not already familiar with the tool, we recommend that you install the tool and configure it to work with your [Cloudflare account](https://dash.cloudflare.com). Documentation can be found [here](https://developers.cloudflare.com/workers/tooling/wrangler/).
+This project is generated from `worker-typescript-template`. [Wrangler](https://developers.cloudflare.com/workers/cli-wrangler/install-update) 2.0 or newer is required. If you are not already familiar with the tool, we recommend that you install the tool and configure it to work with your [Cloudflare account](https://dash.cloudflare.com). Documentation can be found [here](https://developers.cloudflare.com/workers/tooling/wrangler/).
 
 ### 👩 💻 Developing
 
-[`src/index.ts`](./src/index.ts) calls the request handler in [`src/handler.ts`](./src/handler.ts), and will return the [request method](https://developer.mozilla.org/en-US/docs/Web/API/Request/method) for the given request.
+[`src/index.ts`](./src/index.ts) calls the request handler in [`src/handler.ts`](./src/handler.ts), and will return the [response](https://developer.mozilla.org/en-US/docs/Web/API/Response) for the given request.
 
 ### 🧪 Testing
 

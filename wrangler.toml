@@ -1,10 +1,9 @@
 name = "api"
-type = "javascript"
-zone_id = "56356d69f7669c1467156e90d3b52497"
+main = "src/index.ts"
 account_id = "b42b81236b212a689385d852be1f0bf1"
 route = "https://api.twitchgg.tv/*"
 workers_dev = true
-compatibility_date = "2022-01-03"
+compatibility_date = "2022-09-01"
 
 kv_namespaces = [ 
   { binding = "TWITCH", id = "f6127c5be0b84279b8979434a1cfa379", preview_id = "c43393e28748482fb2d8b65cff75c47a" }
@@ -13,8 +12,3 @@ kv_namespaces = [
 # [secrets]
 # TWITCH_CLIENT_ID
 # TWITCH_CLIENT_SECRET
-
-[build]
-command = "npm install && npm run build"
-[build.upload]
-format = "service-worker"

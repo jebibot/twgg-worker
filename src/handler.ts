@@ -1,6 +1,9 @@
-declare const TWITCH: KVNamespace;
-declare const TWITCH_CLIENT_ID: string;
-declare const TWITCH_CLIENT_SECRET: string;
+export interface Env {
+  TWITCH: KVNamespace;
+
+  TWITCH_CLIENT_ID: string;
+  TWITCH_CLIENT_SECRET: string;
+}
 
 type TokenResponse = {
   access_token: string;
@@ -29,11 +32,11 @@ type ApiResponse<T> = {
   error?: string;
 };
 
-async function getTwitchApiHeaders() {
-  let appToken = await TWITCH.get("app-token");
+async function getTwitchApiHeaders(env: Env) {
+  let appToken = await env.TWITCH.get("app-token");
   if (!appToken) {
     const response = await fetch(
-      `https://id.twitch.tv/oauth2/token?client_id=${TWITCH_CLIENT_ID}&client_secret=${TWITCH_CLIENT_SECRET}&grant_type=client_credentials`,
+      `https://id.twitch.tv/oauth2/token?client_id=${env.TWITCH_CLIENT_ID}&client_secret=${env.TWITCH_CLIENT_SECRET}&grant_type=client_credentials`,
       { method: "POST" }
     );
     const tokenData = (await response.json()) as TokenResponse;
@@ -41,17 +44,20 @@ async function getTwitchApiHeaders() {
     if (!appToken) {
       throw new Error("Token not found!");
     }
-    await TWITCH.put("app-token", appToken, {
+    await env.TWITCH.put("app-token", appToken, {
       expirationTtl: tokenData.expires_in - 60,
     });
   }
   return {
     Authorization: `Bearer ${appToken}`,
-    "Client-Id": TWITCH_CLIENT_ID,
+    "Client-Id": env.TWITCH_CLIENT_ID,
   };
 }
 
-export async function handleRequest(request: Request): Promise<Response> {
+export async function handleRequest(
+  request: Request,
+  env: Env
+): Promise<Response> {
   const origin = request.headers.get("Origin");
   if (
     origin == null ||
@@ -97,7 +103,7 @@ export async function handleRequest(request: Request): Promise<Response> {
     }
     const response = await fetch(
       `https://api.twitch.tv/helix/videos?${params}`,
-      { headers: await getTwitchApiHeaders() }
+      { headers: await getTwitchApiHeaders(env) }
     );
     const videoData = (await response.json()) as ApiResponse<VideoData>;
     if (videoData.error) {
@@ -112,7 +118,7 @@ export async function handleRequest(request: Request): Promise<Response> {
     }
     const response = await fetch(
       `https://api.twitch.tv/helix/channels?${params}`,
-      { headers: await getTwitchApiHeaders() }
+      { headers: await getTwitchApiHeaders(env) }
     );
     const channelData = (await response.json()) as ApiResponse<ChannelData>;
     if (channelData.error) {
@@ -127,7 +133,7 @@ export async function handleRequest(request: Request): Promise<Response> {
     }
     const response = await fetch(
       `https://api.twitch.tv/helix/clips?${params}`,
-      { headers: await getTwitchApiHeaders() }
+      { headers: await getTwitchApiHeaders(env) }
     );
     const clipData = (await response.json()) as ApiResponse<ClipData>;
     if (clipData.error) {
