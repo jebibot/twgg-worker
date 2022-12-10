@@ -143,27 +143,27 @@ describe("handleRequest", () => {
         env
       );
       expect(env.TWITCH.put.mock.calls[0]).toMatchInlineSnapshot(`
-        Array [
+        [
           "app-token",
           "token",
-          Object {
+          {
             "expirationTtl": 3540,
           },
         ]
       `);
       expect(global.fetch.mock.calls[0]).toMatchInlineSnapshot(`
-        Array [
+        [
           "https://id.twitch.tv/oauth2/token?client_id=id&client_secret=secret&grant_type=client_credentials",
-          Object {
+          {
             "method": "POST",
           },
         ]
       `);
       expect(global.fetch.mock.calls[1]).toMatchInlineSnapshot(`
-        Array [
+        [
           "https://api.twitch.tv/helix/videos?id=335921245&id=1234",
-          Object {
-            "headers": Object {
+          {
+            "headers": {
               "Authorization": "Bearer token",
               "Client-Id": "id",
             },
@@ -173,8 +173,8 @@ describe("handleRequest", () => {
       expect(result.status).toEqual(200);
       expect(result.body).toMatchInlineSnapshot(`
         Blob {
-          "parts": Array [
-            "{\\"335921245\\":{\\"duration\\":\\"3m21s\\",\\"userId\\":\\"141981764\\"}}",
+          "parts": [
+            "{"335921245":{"duration":"3m21s","userId":"141981764"}}",
           ],
           "type": "",
         }
@@ -195,10 +195,10 @@ describe("handleRequest", () => {
         env
       );
       expect(global.fetch.mock.calls[0]).toMatchInlineSnapshot(`
-        Array [
+        [
           "https://api.twitch.tv/helix/videos?id=335921245&id=1234",
-          Object {
-            "headers": Object {
+          {
+            "headers": {
               "Authorization": "Bearer kvtoken",
               "Client-Id": "id",
             },
@@ -208,8 +208,8 @@ describe("handleRequest", () => {
       expect(result.status).toEqual(200);
       expect(result.body).toMatchInlineSnapshot(`
         Blob {
-          "parts": Array [
-            "{\\"335921245\\":{\\"duration\\":\\"3m21s\\",\\"userId\\":\\"141981764\\"}}",
+          "parts": [
+            "{"335921245":{"duration":"3m21s","userId":"141981764"}}",
           ],
           "type": "",
         }
@@ -250,27 +250,27 @@ describe("handleRequest", () => {
         env
       );
       expect(env.TWITCH.put.mock.calls[0]).toMatchInlineSnapshot(`
-        Array [
+        [
           "app-token",
           "token",
-          Object {
+          {
             "expirationTtl": 3540,
           },
         ]
       `);
       expect(global.fetch.mock.calls[0]).toMatchInlineSnapshot(`
-        Array [
+        [
           "https://id.twitch.tv/oauth2/token?client_id=id&client_secret=secret&grant_type=client_credentials",
-          Object {
+          {
             "method": "POST",
           },
         ]
       `);
       expect(global.fetch.mock.calls[1]).toMatchInlineSnapshot(`
-        Array [
+        [
           "https://api.twitch.tv/helix/channels?broadcaster_id=141981764&broadcaster_id=1234",
-          Object {
-            "headers": Object {
+          {
+            "headers": {
               "Authorization": "Bearer token",
               "Client-Id": "id",
             },
@@ -280,8 +280,8 @@ describe("handleRequest", () => {
       expect(result.status).toEqual(200);
       expect(result.body).toMatchInlineSnapshot(`
         Blob {
-          "parts": Array [
-            "{\\"141981764\\":{\\"title\\":\\"TwitchDev Monthly Update // May 6, 2021\\",\\"game\\":\\"Science & Technology\\"}}",
+          "parts": [
+            "{"141981764":{"title":"TwitchDev Monthly Update // May 6, 2021","game":"Science & Technology"}}",
           ],
           "type": "",
         }
@@ -302,10 +302,10 @@ describe("handleRequest", () => {
         env
       );
       expect(global.fetch.mock.calls[0]).toMatchInlineSnapshot(`
-        Array [
+        [
           "https://api.twitch.tv/helix/channels?broadcaster_id=141981764&broadcaster_id=1234",
-          Object {
-            "headers": Object {
+          {
+            "headers": {
               "Authorization": "Bearer kvtoken",
               "Client-Id": "id",
             },
@@ -315,8 +315,8 @@ describe("handleRequest", () => {
       expect(result.status).toEqual(200);
       expect(result.body).toMatchInlineSnapshot(`
         Blob {
-          "parts": Array [
-            "{\\"141981764\\":{\\"title\\":\\"TwitchDev Monthly Update // May 6, 2021\\",\\"game\\":\\"Science & Technology\\"}}",
+          "parts": [
+            "{"141981764":{"title":"TwitchDev Monthly Update // May 6, 2021","game":"Science & Technology"}}",
           ],
           "type": "",
         }
@@ -355,27 +355,27 @@ describe("handleRequest", () => {
         env
       );
       expect(env.TWITCH.put.mock.calls[0]).toMatchInlineSnapshot(`
-        Array [
+        [
           "app-token",
           "token",
-          Object {
+          {
             "expirationTtl": 3540,
           },
         ]
       `);
       expect(global.fetch.mock.calls[0]).toMatchInlineSnapshot(`
-        Array [
+        [
           "https://id.twitch.tv/oauth2/token?client_id=id&client_secret=secret&grant_type=client_credentials",
-          Object {
+          {
             "method": "POST",
           },
         ]
       `);
       expect(global.fetch.mock.calls[1]).toMatchInlineSnapshot(`
-        Array [
+        [
           "https://api.twitch.tv/helix/clips?id=AwkwardHelplessSalamanderSwiftRage&id=foo",
-          Object {
-            "headers": Object {
+          {
+            "headers": {
               "Authorization": "Bearer token",
               "Client-Id": "id",
             },
@@ -385,8 +385,8 @@ describe("handleRequest", () => {
       expect(result.status).toEqual(200);
       expect(result.body).toMatchInlineSnapshot(`
         Blob {
-          "parts": Array [
-            "{\\"AwkwardHelplessSalamanderSwiftRage\\":{\\"url\\":\\"https://clips-media-assets.twitch.tv/157589949.mp4\\"}}",
+          "parts": [
+            "{"AwkwardHelplessSalamanderSwiftRage":{"url":"https://clips-media-assets.twitch.tv/157589949.mp4"}}",
           ],
           "type": "",
         }
@@ -407,10 +407,10 @@ describe("handleRequest", () => {
         env
       );
       expect(global.fetch.mock.calls[0]).toMatchInlineSnapshot(`
-        Array [
+        [
           "https://api.twitch.tv/helix/clips?id=AwkwardHelplessSalamanderSwiftRage&id=foo",
-          Object {
-            "headers": Object {
+          {
+            "headers": {
               "Authorization": "Bearer kvtoken",
               "Client-Id": "id",
             },
@@ -420,8 +420,8 @@ describe("handleRequest", () => {
       expect(result.status).toEqual(200);
       expect(result.body).toMatchInlineSnapshot(`
         Blob {
-          "parts": Array [
-            "{\\"AwkwardHelplessSalamanderSwiftRage\\":{\\"url\\":\\"https://clips-media-assets.twitch.tv/157589949.mp4\\"}}",
+          "parts": [
+            "{"AwkwardHelplessSalamanderSwiftRage":{"url":"https://clips-media-assets.twitch.tv/157589949.mp4"}}",
           ],
           "type": "",
         }
