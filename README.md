@@ -1,6 +1,6 @@
-# `twitchgg-api-worker`
+# `twgg-worker`
 
-[![CI](https://github.com/jebibot/twitchgg-worker/actions/workflows/main.yml/badge.svg?branch=main&event=push)](https://github.com/jebibot/twitchgg-worker/actions/workflows/main.yml)
+[![CI](https://github.com/jebibot/twgg-worker/actions/workflows/main.yml/badge.svg?branch=main&event=push)](https://github.com/jebibot/twgg-worker/actions/workflows/main.yml)
 
 The API Backend for twitchgg.tv services.
 
