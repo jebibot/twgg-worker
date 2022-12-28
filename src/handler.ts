@@ -27,6 +27,13 @@ type ClipData = {
   thumbnail_url: string;
 };
 
+type StreamData = {
+  user_login: string;
+  game_name: string;
+  title: string;
+  thumbnail_url: string;
+};
+
 type ApiResponse<T> = {
   data: T[];
   error?: string;
@@ -141,6 +148,25 @@ export async function handleRequest(
     }
     for (const c of clipData.data) {
       result[c.id] = { url: c.thumbnail_url.replace(/-preview.*/, ".mp4") };
+    }
+  } else if (url.pathname === "/streams") {
+    if (keySet.size !== 1 || !keySet.has("user_login")) {
+      throw new Error("Invalid argument!");
+    }
+    const response = await fetch(
+      `https://api.twitch.tv/helix/streams?${params}`,
+      { headers: await getTwitchApiHeaders(env) }
+    );
+    const streamData = (await response.json()) as ApiResponse<StreamData>;
+    if (streamData.error) {
+      throw new Error(streamData.error);
+    }
+    for (const s of streamData.data) {
+      result[s.user_login] = {
+        title: s.title,
+        game: s.game_name,
+        thumbnail_url: s.thumbnail_url,
+      };
     }
   } else {
     return new Response("Not Found", { status: 404, headers: corsHeaders });
