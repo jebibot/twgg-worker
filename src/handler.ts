@@ -154,7 +154,7 @@ export async function handleRequest(
       throw new Error("Invalid argument!");
     }
     const response = await fetch(
-      `https://api.twitch.tv/helix/streams?${params}`,
+      `https://api.twitch.tv/helix/streams?${params}&first=100`,
       { headers: await getTwitchApiHeaders(env) }
     );
     const streamData = (await response.json()) as ApiResponse<StreamData>;
