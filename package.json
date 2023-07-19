@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "wrangler dev",
-    "deploy": "wrangler publish",
+    "deploy": "wrangler deploy",
     "format": "prettier --write  '*.{json,js,md}' 'src/**/*.{js,ts}' 'test/**/*.{js,ts,json}'",
     "lint": "eslint --max-warnings=0 src test && prettier --check '*.{json,js,md}' 'src/**/*.{js,ts}' 'test/**/*.{js,ts,json}'",
     "test": "jest --verbose"
