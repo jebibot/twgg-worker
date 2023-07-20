@@ -39,7 +39,7 @@ describe("handleRequest", () => {
         method: "GET",
         headers: { Origin: "https://example.com" },
       }),
-      env
+      env,
     );
     expect(result.status).toEqual(403);
   });
@@ -47,7 +47,7 @@ describe("handleRequest", () => {
   it("should return 405 if not GET", async () => {
     const result = await handleRequest(
       new Request("/", { method: "POST", headers: { Origin: allowedOrigin } }),
-      env
+      env,
     );
     expect(result.status).toEqual(405);
     expect(result.headers).toMatchInlineSnapshot(`
@@ -68,7 +68,7 @@ describe("handleRequest", () => {
           "Access-Control-Request-Method": "GET",
         },
       }),
-      env
+      env,
     );
     expect(result.status).toEqual(200);
     expect(result.headers).toMatchInlineSnapshot(`
@@ -89,7 +89,7 @@ describe("handleRequest", () => {
         method: "OPTIONS",
         headers: { Origin: allowedOrigin },
       }),
-      env
+      env,
     );
     expect(result.status).toEqual(200);
     expect(result.headers).toMatchInlineSnapshot(`
@@ -107,7 +107,7 @@ describe("handleRequest", () => {
         method: "GET",
         headers: { Origin: allowedOrigin },
       }),
-      env
+      env,
     );
     expect(result.status).toEqual(404);
   });
@@ -120,8 +120,8 @@ describe("handleRequest", () => {
             method: "GET",
             headers: { Origin: allowedOrigin },
           }),
-          env
-        )
+          env,
+        ),
       ).rejects.toBeInstanceOf(Error);
     });
 
@@ -140,7 +140,7 @@ describe("handleRequest", () => {
           method: "GET",
           headers: { Origin: allowedOrigin },
         }),
-        env
+        env,
       );
       expect(env.TWITCH.put.mock.calls[0]).toMatchInlineSnapshot(`
         [
@@ -192,7 +192,7 @@ describe("handleRequest", () => {
           method: "GET",
           headers: { Origin: allowedOrigin },
         }),
-        env
+        env,
       );
       expect(global.fetch.mock.calls[0]).toMatchInlineSnapshot(`
         [
@@ -225,8 +225,8 @@ describe("handleRequest", () => {
             method: "GET",
             headers: { Origin: allowedOrigin },
           }),
-          env
-        )
+          env,
+        ),
       ).rejects.toBeInstanceOf(Error);
     });
 
@@ -247,7 +247,7 @@ describe("handleRequest", () => {
           method: "GET",
           headers: { Origin: allowedOrigin },
         }),
-        env
+        env,
       );
       expect(env.TWITCH.put.mock.calls[0]).toMatchInlineSnapshot(`
         [
@@ -299,7 +299,7 @@ describe("handleRequest", () => {
           method: "GET",
           headers: { Origin: allowedOrigin },
         }),
-        env
+        env,
       );
       expect(global.fetch.mock.calls[0]).toMatchInlineSnapshot(`
         [
@@ -332,8 +332,8 @@ describe("handleRequest", () => {
             method: "GET",
             headers: { Origin: allowedOrigin },
           }),
-          env
-        )
+          env,
+        ),
       ).rejects.toBeInstanceOf(Error);
     });
 
@@ -352,7 +352,7 @@ describe("handleRequest", () => {
           method: "GET",
           headers: { Origin: allowedOrigin },
         }),
-        env
+        env,
       );
       expect(env.TWITCH.put.mock.calls[0]).toMatchInlineSnapshot(`
         [
@@ -404,7 +404,7 @@ describe("handleRequest", () => {
           method: "GET",
           headers: { Origin: allowedOrigin },
         }),
-        env
+        env,
       );
       expect(global.fetch.mock.calls[0]).toMatchInlineSnapshot(`
         [

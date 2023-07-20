@@ -44,7 +44,7 @@ async function getTwitchApiHeaders(env: Env) {
   if (!appToken) {
     const response = await fetch(
       `https://id.twitch.tv/oauth2/token?client_id=${env.TWITCH_CLIENT_ID}&client_secret=${env.TWITCH_CLIENT_SECRET}&grant_type=client_credentials`,
-      { method: "POST" }
+      { method: "POST" },
     );
     const tokenData = (await response.json()) as TokenResponse;
     appToken = tokenData.access_token;
@@ -63,7 +63,7 @@ async function getTwitchApiHeaders(env: Env) {
 
 export async function handleRequest(
   request: Request,
-  env: Env
+  env: Env,
 ): Promise<Response> {
   const origin = request.headers.get("Origin");
   if (
@@ -110,7 +110,7 @@ export async function handleRequest(
     }
     const response = await fetch(
       `https://api.twitch.tv/helix/videos?${params}`,
-      { headers: await getTwitchApiHeaders(env) }
+      { headers: await getTwitchApiHeaders(env) },
     );
     const videoData = (await response.json()) as ApiResponse<VideoData>;
     if (videoData.error) {
@@ -125,7 +125,7 @@ export async function handleRequest(
     }
     const response = await fetch(
       `https://api.twitch.tv/helix/channels?${params}`,
-      { headers: await getTwitchApiHeaders(env) }
+      { headers: await getTwitchApiHeaders(env) },
     );
     const channelData = (await response.json()) as ApiResponse<ChannelData>;
     if (channelData.error) {
@@ -140,7 +140,7 @@ export async function handleRequest(
     }
     const response = await fetch(
       `https://api.twitch.tv/helix/clips?${params}`,
-      { headers: await getTwitchApiHeaders(env) }
+      { headers: await getTwitchApiHeaders(env) },
     );
     const clipData = (await response.json()) as ApiResponse<ClipData>;
     if (clipData.error) {
@@ -155,7 +155,7 @@ export async function handleRequest(
     }
     const response = await fetch(
       `https://api.twitch.tv/helix/streams?${params}&first=100`,
-      { headers: await getTwitchApiHeaders(env) }
+      { headers: await getTwitchApiHeaders(env) },
     );
     const streamData = (await response.json()) as ApiResponse<StreamData>;
     if (streamData.error) {
