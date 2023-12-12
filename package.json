@@ -17,7 +17,7 @@
     "service-worker-mock": "^2.0.5",
     "ts-jest": "^29.1.1",
     "typescript": "^5.3.3",
-    "wrangler": "3.19.0"
+    "wrangler": "3.20.0"
   },
   "scripts": {
     "start": "wrangler dev",
